@@ -49,7 +49,10 @@ class ImageTool():
         obList = []
         count = 0
         for i in range(0,len(urlList)):
-            picUrl = urlList[i].replace('![](', '').replace(')','')
+            result = re.findall(r'[a-zA-z]+://[^\s]*', urlList[i])
+            if len(result) == 0 :
+                continue
+            picUrl = result[0]
             name = self.getPicName()
             with request.urlopen(picUrl) as web:
                 # 为保险起见使用二进制写文件模式，防止编码错误
