@@ -52,7 +52,7 @@ class ImageTool():
             result = re.findall(r'[a-zA-z]+://[^\s]*', urlList[i])
             if len(result) == 0 :
                 continue
-            picUrl = result[0]
+            picUrl = result[0].replace(')','')
             name = self.getPicName()
             with request.urlopen(picUrl) as web:
                 # 为保险起见使用二进制写文件模式，防止编码错误
